@@ -1,0 +1,122 @@
+<div class="container-fluid px-0">
+  <h1 class="text-center display-4 bg-danger text-white pb-3">
+    Student's Mark Entry Form
+  </h1>
+  <div class="container">
+    <div class="jumbotron m-4 p-4 bg-light">
+      <form #studentForm="ngForm" (ngSubmit)="studentFormSubmit(studentForm)">
+        <div class="form-group row">
+          <div class="col-md-4">
+            <label for="student" class="col-form-label float-right"
+              >Student Name</label
+            >
+          </div>
+          <div class="col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              id="student"
+              name="studentName"
+              ngModel
+              required
+            />
+          </div>
+        </div>
+        <h3 class="bg-primary text-center text-white pb-1">
+          Enter Marks
+        </h3>
+        <div class="row bg-dark pt-4 pb-1 m-4 text-white">
+          <div class="col-md-6 row form-group">
+            <div class="col-md-4">
+              <label for="hindi" class="col-form-label float-right"
+                >Hindi</label
+              >
+            </div>
+            <div class="col-md-8">
+              <input
+                type="number"
+                class="form-control"
+                id="hindi"
+                name="hindi"
+                ngModel
+                required
+              />
+            </div>
+          </div>
+          <div class="col-md-6 row form-group">
+            <div class="col-md-4">
+              <label for="math" class="col-form-label float-right">Math</label>
+            </div>
+            <div class="col-md-8">
+              <input
+                type="number"
+                class="form-control"
+                id="math"
+                name="math"
+                ngModel
+                required
+              />
+            </div>
+          </div>
+          <div class="col-md-6 row form-group">
+            <div class="col-md-4">
+              <label for="english" class="col-form-label float-right"
+                >English</label
+              >
+            </div>
+            <div class="col-md-8">
+              <input
+                type="number"
+                class="form-control"
+                id="english"
+                name="english"
+                ngModel
+                required
+              />
+            </div>
+          </div>
+          <div class="col-md-6 row form-group">
+            <div class="col-md-4">
+              <label for="science" class="col-form-label float-right"
+                >Science</label
+              >
+            </div>
+            <div class="col-md-8">
+              <input
+                type="number"
+                class="form-control"
+                id="science"
+                name="science"
+                ngModel
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          type="submit"
+          [disabled]="studentForm.invalid"
+          class="btn btn-success px-5 d-block mx-auto"
+        >
+          ADD
+        </button>
+      </form>
+    </div>
+    <!-- ================= Student Details ==================== -->
+    <div *ngIf="studentData.length > 0 ? true : false">
+      <h1 class="text-center bg-success text-white">Students Details</h1>
+      <table class="table table-striped table-dark table-bordered text-center">
+        <thead>
+          <th>NAME</th>
+          <th>PERCENTAGE</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let student of studentData">
+            <td>{{ student.studentName }}</td>
+            <td>{{ student.percentage | number: "1.0-2" }}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

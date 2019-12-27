@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <form
+      class="jumbotron bg-dark text-light mt-4 p-4 col-md-6 offset-md-3"
+      #myForm="ngForm"
+      (ngSubmit)="submitForm(myForm)"
+    >
+      <div class="row form-group">
+        <label class="col-md-4" for="un">Name:</label>
+        <input
+          class="form-control col-md-7"
+          type="text"
+          id="un"
+          placeholder="Enter Full Name"
+          name="username"
+          ngModel
+        />
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-4" for="dn">Designation:</label>
+        <input
+          class="form-control col-md-7"
+          type="text"
+          id="dn"
+          name="designation"
+          placeholder="Enter Designation"
+          ngModel
+        />
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-4" for="basic">Basic:</label>
+        <input
+          class="form-control col-md-7"
+          type="number"
+          id="basic"
+          name="basic"
+          placeholder="Enter Basic"
+          ngModel
+        />
+      </div>
+
+      <button type="submit" class="btn btn-success d-block mx-auto px-5">
+        Resister
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="showTable">
+    <table class="table table-striped table-dark table-bordered text-center">
+      <thead>
+        <th>NAME</th>
+        <th>DESIGNATION</th>
+        <th>SALARY</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employeesData">
+          <td>{{ employee.username }}</td>
+          <td>{{ employee.designation }}</td>
+          <td>
+            {{ employee.basic + employee.basic * 0.15 + employee.basic * 0.1 }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

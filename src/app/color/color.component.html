@@ -1,0 +1,29 @@
+<div class="container">
+  <label for="color" class="mt-2">color:</label>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Enter a valid Color"
+    id="color"
+    (keyup.enter)="addColors(ref.value)"
+    [(ngModel)]="inputData"
+    #ref
+    required
+  />
+  <button class="btn btn-success w-100 mt-3" (click)="addColors(ref.value)">
+    Add
+  </button>
+  <p class="text-center mt-1 display-4" [style.color]="inputData">
+    {{ inputData }}
+  </p>
+
+  <h2 class="text-center" *ngIf="showPara">List of Colors</h2>
+  <ul *ngFor="let color of colorsArr" class="list-group mt-3 mb-3">
+    <li
+      class="list-group-item text-center text-uppercase text-light w-50 mx-auto lead"
+      [style.backgroundColor]="color"
+    >
+      {{ color }}
+    </li>
+  </ul>
+</div>

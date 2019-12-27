@@ -1,0 +1,30 @@
+<h1 class="display-4 bg-success text-light text-center pb-3 lead">CHILD</h1>
+
+<!-- Table -->
+<div
+  *ngIf="parentData.length > 0 ? true : false; then thenBlock; else elseBlock"
+></div>
+
+<ng-template #thenBlock>
+  <div class="container mt-3">
+    <table class="table table-striped table-dark table-bordered text-center">
+      <thead>
+        <th>NAME</th>
+        <th>DOB</th>
+        <th>MOBILE</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of parentData">
+          <td>{{ user.username }}</td>
+          <td>{{ user.dob }}</td>
+          <td>{{ user.mobile }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+  <div class="container mt-3">
+    <h2 class="text-center">No User Data Avialible</h2>
+  </div>
+</ng-template>

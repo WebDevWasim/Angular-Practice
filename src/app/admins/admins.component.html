@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="text-center bg-success text-white">Add New Member</h1>
+      <div class="jumbotron bg-light p-3 pb-4">
+        <form #ref="ngForm" (ngSubmit)="submitForm(ref)">
+          <div class="form-group">
+            <label for="un">Name</label>
+            <input
+              class="form-control"
+              [class.is-invalid]="fullname.invalid && fullname.touched"
+              [class.is-valid]="fullname.valid && fullname.touched"
+              type="text"
+              id="un"
+              placeholder="Enter your Full Name"
+              name="name"
+              #fullname="ngModel"
+              ngModel
+              required
+            />
+            <!-- Fulll Name Validation -->
+            <div *ngIf="fullname.invalid && fullname.touched">
+              <small class="text-danger"> Name is Required</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input
+              class="form-control"
+              type="number"
+              id="age"
+              placeholder="Enter your Age"
+              name="age"
+              #age="ngModel"
+              [class.is-invalid]="age.invalid && age.touched"
+              [class.is-valid]="age.valid && age.touched"
+              ngModel
+              required
+            />
+            <!-- Age Validation -->
+            <div *ngIf="age.invalid && age.touched">
+              <small class="text-danger"> Age is Required</small>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="ref.invalid"
+            class="btn btn-success form-control"
+          >
+            Add Admin
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Members Details Table -->
+    <div *ngIf="adminsData.length > 0 ? true : false" class="col-md-6">
+      <h1 class="text-center bg-danger text-white">Admins Details</h1>
+      <table class="table table-striped table-danger text-center">
+        <thead>
+          <th>NAME</th>
+          <th>AGE</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let admin of adminsData">
+            <td>{{ admin.name }}</td>
+            <td>{{ admin.age }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

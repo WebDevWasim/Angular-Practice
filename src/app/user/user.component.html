@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="row">
+    <form
+      class="jumbotron bg-light mt-4 p-4 col-md-6 offset-md-3"
+      #ref="ngForm"
+      (ngSubmit)="submitForm(ref, ref.value)"
+    >
+      <div class="form-group">
+        <label for="un">Full Name:</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="fullname.invalid && fullname.touched"
+          [class.is-valid]="fullname.valid && fullname.touched"
+          type="text"
+          id="un"
+          name="username"
+          #fullname="ngModel"
+          ngModel
+          required
+        />
+        <!-- Fulll Name Validation -->
+        <div *ngIf="fullname.invalid && fullname.touched">
+          <small class="text-danger"> Name is Required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date Of Birth:</label>
+        <input
+          class="form-control"
+          [class.is-invalid]="dob.invalid && dob.touched"
+          [class.is-valid]="dob.valid && dob.touched"
+          type="date"
+          id="dob"
+          name="dob"
+          #dob="ngModel"
+          ngModel
+          required
+        />
+        <!-- DOB Validation -->
+        <div *ngIf="dob.invalid && dob.touched">
+          <small class="text-danger"> Date is Required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ph">Mobile No:</label>
+        <input
+          class="form-control"
+          type="number"
+          pattern="^[0-9]{10}$"
+          id="ph"
+          name="mobile"
+          #mobile="ngModel"
+          [class.is-invalid]="mobile.invalid && mobile.touched"
+          [class.is-valid]="mobile.valid && mobile.touched"
+          ngModel
+          required
+        />
+        <!-- Mobile Validation -->
+        <div *ngIf="mobile.errors && (mobile.invalid && mobile.touched)">
+          <small class="text-danger" *ngIf="mobile.errors.required">
+            Mobile Number is Required</small
+          >
+          <small class="text-danger" *ngIf="mobile.errors.pattern">
+            Mobile Number Must be 10 digits</small
+          >
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="ref.invalid"
+        class="btn btn-success form-control"
+      >
+        Add User
+      </button>
+    </form>
+  </div>
+
+  <!-- Table -->
+  <div
+    *ngIf="userData.length > 0 ? true : false; then thenBlock; else elseBlock"
+  ></div>
+
+  <ng-template #thenBlock>
+    <table class="table table-striped table-dark table-bordered text-center">
+      <thead>
+        <th>NAME</th>
+        <th>DOB</th>
+        <th>MOBILE</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of userData">
+          <td>{{ user.username }}</td>
+          <td>{{ user.dob }}</td>
+          <td>{{ user.mobile }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  <ng-template #elseBlock>
+    <h2 class="text-center">No User Data Avialible</h2>
+  </ng-template>
+</div>

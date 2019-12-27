@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="display-4 bg-danger text-light text-center pb-3 lead">
+        PARENT
+      </h1>
+
+      <!-- Table -->
+      <div
+        *ngIf="
+          childData.length > 0 ? true : false;
+          then thenBlock;
+          else elseBlock
+        "
+      ></div>
+
+      <ng-template #thenBlock>
+        <div class="container mt-3">
+          <table
+            class="table table-striped table-dark table-bordered text-center"
+          >
+            <thead>
+              <th>NAME</th>
+              <th>DOB</th>
+              <th>MOBILE</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of childData">
+                <td>{{ user.username }}</td>
+                <td>{{ user.dob }}</td>
+                <td>{{ user.mobile }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+      <ng-template #elseBlock>
+        <div class="container mt-3">
+          <h2 class="text-center">No User Data Avialible</h2>
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-md-6">
+      <app-child1 (myEvent)="childData = $event"></app-child1>
+    </div>
+  </div>
+</div>

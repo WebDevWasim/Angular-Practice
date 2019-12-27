@@ -1,0 +1,47 @@
+<div class="container">
+  <h1 class="text-center bg-info text-white">Resisters</h1>
+
+  <div class="alert alert-success p-1 pt-2" *ngIf="isAdded">
+    <h5 class="text-center">Resister data is added Succesfully</h5>
+  </div>
+
+  <div class="alert alert-danger p-1 pt-2" *ngIf="isExist">
+    <h5 class="text-center">Resister data is already added</h5>
+  </div>
+
+  <div *ngIf="resistersData.length; then thenBlock; else elseBlock"></div>
+
+  <ng-template #thenBlock>
+    <table
+      class="table table-striped table-bordered table-info text-center mt-3"
+    >
+      <thead>
+        <th>NAME</th>
+        <th>EMAIL</th>
+        <th>MOBILE</th>
+        <th>QUALIFICATION</th>
+        <th>PASSWORD</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resister of resistersData">
+          <td>{{ resister.name }}</td>
+          <td>{{ resister.email }}</td>
+          <td>{{ resister.mobile }}</td>
+          <td>{{ resister.select }}</td>
+          <td>{{ resister.password }}</td>
+          <td>
+            <button
+              class="btn btn-success btn-sm"
+              (click)="sendToView(resister)"
+            >
+              Add
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  <ng-template #elseBlock>
+    <h2 class="text-center text-danger mt-3">No Resisters Data Avialible</h2>
+  </ng-template>
+</div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <h1 class="bg-danger text-white text-center pb-1">
+        PARENT
+      </h1>
+
+      <div class="jumbotron bg-dark text-white p-3 mt-3">
+        <label for="num">Number</label>
+        <input
+          type="number"
+          #ref
+          id="num"
+          placeholder="Enter a Number"
+          class="form-control mb-3"
+        />
+        <button class="btn btn-danger form-control" (click)="sendData(ref)">
+          Send Data
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h1 class="bg-success text-white text-center pb-1">
+        CHILD
+      </h1>
+      <app-c [data]="num"></app-c>
+    </div>
+  </div>
+</div>

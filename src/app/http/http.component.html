@@ -1,0 +1,39 @@
+<div class="container">
+  <!-- Search Box -->
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <select [(ngModel)]="searchField">
+          <option value="id">ID</option>
+          <option value="employee_name">FULL NAME</option>
+          <option value="employee_age"> AGE </option>
+          <option value="employee_salary">SALARY</option>
+        </select>
+      </div>
+    </div>
+    <input
+      type="text"
+      class="form-control p-4"
+      placeholder="Search Table data"
+      [(ngModel)]="searchItem"
+    />
+  </div>
+
+  <!-- Data table -->
+  <table class="table table-striped table-dark table-bordered text-center">
+    <thead>
+      <th>ID</th>
+      <th>FULL NAME</th>
+      <th>AGE</th>
+      <th>SALARY</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees | search: searchField:searchItem">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.employee_name }}</td>
+        <td>{{ employee.employee_age }}</td>
+        <td>{{ employee.employee_salary }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="display-4 bg-danger text-white text-center pb-3 lead">
+        PARENT
+      </h1>
+
+      <form
+        class="jumbotron d-block bg-light p-4 mt-3"
+        #myForm="ngForm"
+        (ngSubmit)="submitForm(myForm)"
+      >
+        <div class="form-group">
+          <label for="un">Full Name:</label>
+          <input
+            class="form-control"
+            [class.is-invalid]="fullname.invalid && fullname.touched"
+            [class.is-valid]="fullname.valid && fullname.touched"
+            type="text"
+            id="un"
+            name="username"
+            #fullname="ngModel"
+            ngModel
+            required
+          />
+          <!-- Fulll Name Validation -->
+          <div *ngIf="fullname.invalid && fullname.touched">
+            <small class="text-danger"> Name is Required</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date Of Birth:</label>
+          <input
+            class="form-control"
+            [class.is-invalid]="dob.invalid && dob.touched"
+            [class.is-valid]="dob.valid && dob.touched"
+            type="date"
+            id="dob"
+            name="dob"
+            #dob="ngModel"
+            ngModel
+            required
+          />
+          <!-- DOB Validation -->
+          <div *ngIf="dob.invalid && dob.touched">
+            <small class="text-danger"> Date is Required</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="ph">Mobile No:</label>
+          <input
+            class="form-control"
+            type="number"
+            pattern="^[0-9]{10}$"
+            id="ph"
+            name="mobile"
+            #mobile="ngModel"
+            [class.is-invalid]="mobile.invalid && mobile.touched"
+            [class.is-valid]="mobile.valid && mobile.touched"
+            ngModel
+            required
+          />
+          <!-- Mobile Validation -->
+          <div *ngIf="mobile.errors && (mobile.invalid && mobile.touched)">
+            <small class="text-danger" *ngIf="mobile.errors.required">
+              Mobile Number is Required</small
+            >
+            <small class="text-danger" *ngIf="mobile.errors.pattern">
+              Mobile Number Must be 10 digits</small
+            >
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="myForm.invalid"
+          class="btn btn-success form-control"
+        >
+          Add User
+        </button>
+      </form>
+    </div>
+    <!-- This is Child component Data -->
+    <div class="col-md-6">
+      <app-child [parentData]="userData"></app-child>
+    </div>
+  </div>
+</div>
